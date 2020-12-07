@@ -1,89 +1,55 @@
-const { MongoClient } = require("mongodb");
+const MongoClient = require("mongodb").MongoClient;
+const config = require("./config");
 
-function MyDB() {
-  const myDB = {};
+// Guide: https://dzone.com/articles/crud-operations-on-mongodb-thru-nodejs
 
-  const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
+let database;
 
-  myDB.getPosts = async () => {
-    const client = new MongoClient(uri, { useUnifiedTopology: true });
-    try {
-      await client.connect();
+const mongoDb = (uri, dbName) => {
+  const currentMongo = {};
 
-      const db = client.db("posts");
-      const posts = db.collection("posts");
-
-      const query = {};
-
-      return posts
-        .find(query)
-        .sort({ _id: -1 })
-        .limit(10)
-        .toArray()
-        .finally(() => client.close());
-    } catch (err) {
-      console.log("Error connecting to the database", err);
-    }
+  // Mongo db options
+  const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   };
 
-  myDB.initialize = async () => {
-    const client = new MongoClient(uri, { useUnifiedTopology: true });
+  // Create new client with options
+  // the uri is gotten from the config file or env. variables
+  currentMongo.client = new MongoClient(uri, options);
 
-    await client.connect();
+  // return the promise of the db connection
+  return new Promise((resolve) => {
+    currentMongo.client.connect((err) => {
+      if (err) throw err;
+      currentMongo.connection = currentMongo.client.db(dbName);
 
-    const db = client.db("posts");
-    const posts = db.collection("posts");
+      console.log("Successfully connected to mongo client!");
+      resolve(currentMongo);
+    });
+  });
+};
 
-    console.log("initializing database");
-    for (let i = 0; i < 100; i++) {
-      await posts.insertOne({
-        text: "Something " + i,
-        author: "John " + i,
-      });
-    }
+// Initialize the database
+// This will be called before we start listening to express server
+const initConnection = () => {
+  return new Promise((resolve) => {
+    // Get uri from the config
+    const uri = config.mongo.uri;
+    // connect to our forum DB
+    mongoDb(uri, "forum").then((db) => {
+      database = db;
+      // Resolve the connection
+      resolve();
+    });
+  });
+};
 
-    console.log("done");
-  };
+// Return the database
+// This will be used in the controllers
+const getDatabase = () => {
+  return database;
+};
 
-  myDB.createPost = async (post) => {
-    const client = new MongoClient(uri, { useUnifiedTopology: true });
-
-    await client.connect();
-
-    const db = client.db("posts");
-    const posts = db.collection("posts");
-
-    return await posts.insertOne(post);
-  };
-
-  return myDB;
-}
-
-module.exports = MyDB();
-
-// const { MongoClient } = require("mongodb");
-
-// // Replace the uri string with your MongoDB deployment's connection string.
-// const uri =
-//   "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
-
-// const client = new MongoClient(uri);
-
-// async function run() {
-//   try {
-//     await client.connect();
-
-//     const database = client.db('sample_mflix');
-//     const collection = database.collection('movies');
-
-//     // Query for a movie that has the title 'Back to the Future'
-//     const query = { title: 'Back to the Future' };
-//     const movie = await collection.findOne(query);
-
-//     console.log(movie);
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
+// Export the init and the database connection
+module.exports = { initConnection, getDatabase };
