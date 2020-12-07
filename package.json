@@ -1,6 +1,8 @@
 {
   "name": "apartmentpostings",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": "cozenom",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
