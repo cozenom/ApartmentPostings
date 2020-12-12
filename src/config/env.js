@@ -1,11 +1,11 @@
 const environment = {};
-/*
+
 environment["development"] = {
-  api: "https://webdev-forum-backend.herokuapp.com",
+	api: "http://localhost:3000",
 };
 
 environment["production"] = {
-  api: "https://webdev-forum-backend.herokuapp.com",
+	api: "https://webdev-forum-backend.herokuapp.com",
 };
-*/
+
 export default environment;

@@ -5,9 +5,9 @@ const cors = require("cors");
 const httpStatus = require("http-status");
 
 // routes
-const accountRoute = require("./routes/account.route");
-const threadRoute = require("./routes/thread.route");
-const locationRoute = require("./routes/location.route");
+// const accountRoute = require("./routes/account.route");
+const postRoute = require("./routes/posts.route");
+// const locationRoute = require("./routes/location.route");
 
 // Express app
 const app = express();
@@ -29,13 +29,13 @@ app.use(compression());
 
 // Default route
 app.get("/", (req, res) => {
-  res.send("Hello from form api");
+	res.send("Hello from api");
 });
 
 // user api requests
-app.use("/accounts", accountRoute);
-app.use("/thread", threadRoute);
-app.use("/location", locationRoute);
+// app.use("/accounts", accountRoute);
+app.use("/posts", postRoute);
+// app.use("/location", locationRoute);
 
 // posts api requests
 
@@ -43,8 +43,8 @@ app.use("/location", locationRoute);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
-  res.status(httpStatus.NOT_FOUND);
-  res.send("Not found");
+	res.status(httpStatus.NOT_FOUND);
+	res.send("Not found");
 });
 
 // Export Express router

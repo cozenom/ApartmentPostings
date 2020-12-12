@@ -1,50 +1,45 @@
 import React, { useEffect, useState } from "react";
 import "./post.css";
-import {
-  convertDate,
-  getRandomBackgroundColor,
-  convertDateToFromNow,
-} from "../../service/helper";
+import { convertDate } from "../../service/helper";
+import { imageSize, getImageUrl } from "../../service/imageURLgenerator";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
-  const [date, setDate] = useState("");
-  const [dateUser, setDateUser] = useState("");
-  const [color, setColor] = useState({});
-
-  const initialSetup = () => {
-    setDate(convertDate(props.post.created));
-    setColor(
-      getRandomBackgroundColor(
-        props.post.user[0] ? props.post.user[0].name : "unknown"
-      )
-    );
-    setDateUser(
-      props.post.user[0]
-        ? convertDateToFromNow(props.post.user[0].created)
-        : "unknown"
-    );
-  };
-
-  useEffect(initialSetup, []);
-
-  return (
-    <div className="post-container">
-      <div className="header">{date}</div>
-      <div className="content">
-        <div className="left">
-          <div className="icon" style={color}>
-            {(props.post.user[0]
-              ? props.post.user[0].name
-              : "unknown"
-            ).substring(0, 2)}
-          </div>
-          <p>{props.post.user[0] ? props.post.user[0].name : "unknown"}</p>
-          <p className="date">Joined: {dateUser}</p>
-        </div>
-        <div className="right">{props.post.content}</div>
-      </div>
-    </div>
-  );
+	return (
+		<Link
+			className="post-container"
+			to={{
+				pathname: "/post/one?id" + props.post._id,
+				state: { postId: props.post._id, post: props.post },
+			}}
+		>
+			<div
+				className="image"
+				style={{
+					backgroundImage: `url(${getImageUrl(
+						props.post.images[0],
+						imageSize.M
+					)})`,
+				}}
+			></div>
+			<div className="content">
+				<div className="title">{props.post.title}</div>
+				<div className="extra">
+					<div className="date">
+						Date Posted: {convertDate(props.post.date)}
+					</div>
+					<div className="price">Price: ${props.post.price}</div>
+					<div className="bedrooms">BR: {props.post.bedrooms}</div>
+					<div className="area">Area: {props.post.area} sqft</div>
+					<div className="address">Address: {props.post.mapaddress}</div>
+				</div>
+				<div className="neighborhood">
+					Areas: {props.post.neighborhood.join(", ")}
+				</div>
+			</div>
+			{/* <div className="body">{props.post.body}</div> */}
+		</Link>
+	);
 };
 
 export default Post;

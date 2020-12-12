@@ -11,30 +11,30 @@ const COOKIE_NAME = "forum-user";
 */
 
 const addUser = (user) => {
-  Object.assign(currentUser, user);
-  setCookie(COOKIE_NAME, JSON.stringify(currentUser), 1);
+	Object.assign(currentUser, user);
+	setCookie(COOKIE_NAME, JSON.stringify(currentUser), 1);
 };
 
 const getUser = () => {
-  if (!initialLoad) {
-    let cookie = getCookie(COOKIE_NAME);
-    if (cookie) {
-      try {
-        cookie = JSON.parse(cookie);
-      } catch (error) {
-        console.log("Failed to load cached user");
-      }
-      addUser(cookie);
-    }
-    initialLoad = true;
-  }
-  return currentUser;
+	if (!initialLoad) {
+		let cookie = getCookie(COOKIE_NAME);
+		if (cookie) {
+			try {
+				cookie = JSON.parse(cookie);
+			} catch (error) {
+				console.log("Failed to load cached user");
+			}
+			addUser(cookie);
+		}
+		initialLoad = true;
+	}
+	return currentUser;
 };
 
 const logOut = () => {
-  Object.assign(currentUser);
-  deleteCookie(COOKIE_NAME);
-  window.location.href = "/forum";
+	Object.assign(currentUser);
+	deleteCookie(COOKIE_NAME);
+	window.location.href = "/forum";
 };
 
 let initialLoad = false;
