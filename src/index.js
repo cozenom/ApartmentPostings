@@ -13,6 +13,7 @@ import NotFound from "./views/not-found";
 // Components
 import Header from "./components/header";
 import Footer from "./components/footer";
+import Sort from "./components/sort";
 
 // Services
 import { getUser } from "./service/user.service";
@@ -24,6 +25,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<Router>
 			<Header />
+			<Sort />
 			<div role="main" id="craigslist-body" className="craigslist-body">
 				<Switch>
 					<Route exact path="/">

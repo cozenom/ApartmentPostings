@@ -1,0 +1,39 @@
+.sort {
+	height: 50px;
+	width: 100%;
+	border-bottom: 1px #d0d0d0 solid;
+	border-radius: 3px;
+	margin-bottom: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.sort .sort-by {
+	color: black;
+	font-size: 14px;
+	line-height: 24px;
+	padding: 0 20px;
+}
+
+.sort .sort-by span {
+	color: black;
+	margin-left: 5px;
+	margin-right: 5px;
+	user-select: none;
+}
+.sort .sort-by select,
+.sort .amount select {
+	border: none;
+	cursor: pointer;
+}
+
+.sort .minimize {
+	display: flex;
+	padding: 0 20px;
+	flex: 1;
+	flex-direction: row-reverse;
+}
+
+.sort .active {
+	color: #005edc;
+}
