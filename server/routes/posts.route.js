@@ -1,14 +1,49 @@
-const { query } = require("express");
 const express = require("express");
 const postController = require("../controller/posts.controller");
 const router = express.Router();
 const helper = require("./helper");
 
 const getAllPosts = (req, res) => {
-	// const page = req.query.page;
+	console.log("req.query = ", req.query);
+	let page = req.query.page;
+
+	if (page < 1) {
+		page = 1;
+	}
+
+	let sort = req.query.sort;
+	try {
+		sort = decodeURIComponent(sort);
+		sort = JSON.parse(sort);
+		console.log(sort);
+	} catch (error) {
+		sort = {
+			sortBy: "date",
+		};
+		console.log(
+			"getAllPosts: Failed to parse sorting, using default values",
+			sort
+		);
+	}
+
+	let filter = req.query.filter;
+	try {
+		filter = decodeURIComponent(filter);
+		filter = JSON.parse(filter);
+		console.log(filter);
+	} catch (error) {
+		filter = {};
+		console.log(
+			"getAllPosts: Failed to parse filter, using default values",
+			filter
+		);
+	}
+
+	console.log("Posts route: ", page, sort, filter);
+
 	// read entire table
 	postController
-		.readAllPosts()
+		.readAllPosts(page, sort, filter)
 		.then((posts) => {
 			res.json(posts);
 		})
@@ -22,56 +57,56 @@ const getAllPosts = (req, res) => {
 		});
 };
 
-const getOnePost = async (req, res) => {
-	const id = req.query.id;
+// const getOnePost = async (req, res) => {
+// 	const id = req.query.id;
 
-	if (!id || id.length !== 24) {
-		return res.status(400).send("id is not valid"); // Invalid ID length
-	} else {
-		const idExists = await helper.doesThreadExistByThreadId(id);
-		if (!idExists) {
-			return res.status(400).send("id is not valid"); // ID doesn't exist
-		}
-	}
+// 	if (!id || id.length !== 24) {
+// 		return res.status(400).send("id is not valid"); // Invalid ID length
+// 	} else {
+// 		const idExists = await helper.doesThreadExistByThreadId(id);
+// 		if (!idExists) {
+// 			return res.status(400).send("id is not valid"); // ID doesn't exist
+// 		}
+// 	}
 
-	// read entire table
-	postController
-		.readPost(id)
-		.then((post) => {
-			res.json(post);
-		})
-		.catch((err) => {
-			// Database call failed return 500 error
-			res.status(500); // 500 Internal Server Error
-			res.json({
-				"status-code": 500,
-				message: err || "failed request",
-			});
-		});
-};
+// 	// read entire table
+// 	postController
+// 		.readPost(id)
+// 		.then((post) => {
+// 			res.json(post);
+// 		})
+// 		.catch((err) => {
+// 			// Database call failed return 500 error
+// 			res.status(500); // 500 Internal Server Error
+// 			res.json({
+// 				"status-code": 500,
+// 				message: err || "failed request",
+// 			});
+// 		});
+// };
 
-const searchInThreads = async (req, res) => {
-	const searchTerm = req.query.searchTerm;
+// const searchInThreads = async (req, res) => {
+// 	const searchTerm = req.query.searchTerm;
 
-	if (!searchTerm) {
-		return res.status(400).send("id is not valid"); // Invalid ID length
-	}
+// 	if (!searchTerm) {
+// 		return res.status(400).send("id is not valid"); // Invalid ID length
+// 	}
 
-	// read entire table
-	postController
-		.searchPost(searchTerm)
-		.then((thread) => {
-			res.json(thread);
-		})
-		.catch((err) => {
-			// Database call failed return 500 error
-			res.status(500); // 500 Internal Server Error
-			res.json({
-				"status-code": 500,
-				message: err || "failed request",
-			});
-		});
-};
+// 	// read entire table
+// 	postController
+// 		.searchPost(searchTerm)
+// 		.then((thread) => {
+// 			res.json(thread);
+// 		})
+// 		.catch((err) => {
+// 			// Database call failed return 500 error
+// 			res.status(500); // 500 Internal Server Error
+// 			res.json({
+// 				"status-code": 500,
+// 				message: err || "failed request",
+// 			});
+// 		});
+// };
 
 // Routes
 
@@ -79,9 +114,9 @@ const searchInThreads = async (req, res) => {
 router.get("/all", getAllPosts);
 
 // example: localhost:3000/post/one?id=1b29376f-71d3-4c54-875c-cc1898a55819
-router.get("/one", getOnePost);
+// router.get("/one", getOnePost);
 
-router.get("/search", searchInThreads);
+// router.get("/search", searchInThreads);
 
 // Export user router
 module.exports = router;

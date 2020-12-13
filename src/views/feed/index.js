@@ -6,12 +6,16 @@ import Loader from "react-loader-spinner";
 // import { Link } from "react-router-dom";
 // import SearchBar from "../../components/search-bar";
 import ReactPaginate from "react-paginate";
+import Filter from "../../components/filter";
+import Sort from "../../components/sort";
 
 const Feed = (props) => {
 	const [posts, setPosts] = useState([]);
 	const [nrofPosts, setnrofPosts] = useState(0);
 	const [dataAvailable, setDataAvailable] = useState(false);
 	const [currentPage, setCurrentPage] = useState(0);
+	const [filter, setFilter] = useState({});
+	const [sort, setSort] = useState({});
 
 	// const [searchPosts, setSearchPosts] = useState([]);
 	// const [searchDone, setSearchDone] = useState(false);
@@ -41,14 +45,14 @@ const Feed = (props) => {
 	function handlePageClick({ selected: selectedPage }) {
 		setCurrentPage(selectedPage);
 	}
+
 	useEffect(() => {
 		setCurrentPage(0);
-	}, []);
-	// }, [filter, sorting]);
+	}, [filter, sort]);
 
 	useEffect(() => {
 		setDataAvailable(false);
-		getPosts(currentPage)
+		getPosts(filter, sort, currentPage)
 			.then((response) => {
 				// Insert users
 				setPosts(response.data);
@@ -61,9 +65,20 @@ const Feed = (props) => {
 				console.error("Failed to get all posts", err);
 			});
 	}, []);
+	const updateFilter = (filter) => {
+		console.log("update filter");
+		setFilter(filter);
+	};
+
+	const updateSort = (sort) => {
+		console.log("update sort");
+		setSort(sort);
+	};
+
+	useEffect(getPosts, [filter, sort, currentPage]);
 
 	const initialLoad = () => {
-		getPosts();
+		getPosts(filter, sort, currentPage);
 		setCurrentPage(0);
 	};
 	useEffect(initialLoad, []);
@@ -71,7 +86,8 @@ const Feed = (props) => {
 	return (
 		<div className="feed">
 			<div className="title" title="Home" />
-
+			<Filter updateFilter={updateFilter} />
+			<Sort updateSort={updateSort} />
 			<div className="container">
 				{
 					// Show loader until we load the user list

@@ -3,13 +3,19 @@ import "./sort.css";
 
 const Sort = (props) => {
 	const [sortBy, setSortBy] = useState("date");
+	const [sortOrder, setSortOrder] = useState(1);
 	const [oldsortBy, setoldSortBy] = useState("date");
 
 	useEffect(() => {
 		setoldSortBy(sortBy);
-		console.log("New = ", sortBy, "Old = ", oldsortBy);
+		// console.log("New = ", sortBy, "Old = ", oldsortBy);
 		if (oldsortBy != sortBy) {
 			setSortBy(sortBy);
+			if (sortBy === "pricedesc") {
+				setSortOrder(-1);
+			} else {
+				setSortOrder(1);
+			}
 			return;
 		} else {
 			return;

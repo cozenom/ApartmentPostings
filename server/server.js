@@ -33,13 +33,7 @@ app.get("/", (req, res) => {
 });
 
 // user api requests
-// app.use("/accounts", accountRoute);
 app.use("/posts", postRoute);
-// app.use("/location", locationRoute);
-
-// posts api requests
-
-// threads api requests
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

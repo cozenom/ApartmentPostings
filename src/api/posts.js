@@ -1,8 +1,14 @@
 import axios from "axios";
 import env from "../config/env";
 
-export const getPosts = (page) => {
-	return axios.get(`${env[process.env.NODE_ENV].api}/posts/all?page=${page}`);
+export const getPosts = (filter, sorting, page) => {
+	const uriFilter = encodeURIComponent(JSON.stringify(filter));
+	const uriSorting = encodeURIComponent(JSON.stringify(sorting));
+	return axios.get(
+		`${
+			env[process.env.NODE_ENV].api
+		}/posts/all?page=${page}&filter=${uriFilter}&sort=${uriSorting}`
+	);
 	// console.log(`${env[process.env.NODE_ENV].api}/posts/all/`);
 	// return axios.get(`${env[process.env.NODE_ENV].api}/posts/all/`);
 };

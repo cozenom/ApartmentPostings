@@ -8,26 +8,22 @@ import { Switch, Route, HashRouter as Router } from "react-router-dom";
 
 // Pages
 import Feed from "./views/feed";
-import NotFound from "./views/not-found";
+// import NotFound from "./views/not-found";
 
 // Components
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Sort from "./components/sort";
-import Filter from "./components/filter";
 
 // Services
-import { getUser } from "./service/user.service";
+// import { getUser } from "./service/user.service";
 
 // Load cached user
-getUser();
+// getUser();
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
 			<Header />
-			<Filter />
-			<Sort />
 			<div role="main" id="craigslist-body" className="craigslist-body">
 				<Switch>
 					<Route exact path="/">
