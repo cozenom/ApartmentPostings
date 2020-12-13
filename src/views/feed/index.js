@@ -12,7 +12,7 @@ const Feed = (props) => {
 	const [posts, setPosts] = useState([]);
 	const [nrofPosts, setnrofPosts] = useState(0);
 	const [dataAvailable, setDataAvailable] = useState(false);
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(0);
 	const [filter, setFilter] = useState({});
 	const [sort, setSort] = useState({});
 
@@ -99,7 +99,6 @@ const Feed = (props) => {
 					// Show loader until we load the user list
 					dataAvailable ? (
 						<React.Fragment>
-							<PostList posts={posts} />
 							<ReactPaginate
 								previousLabel={"← Previous"}
 								nextLabel={"Next →"}
@@ -111,6 +110,7 @@ const Feed = (props) => {
 								disabledClassName={"pagination__link--disabled"}
 								activeClassName={"pagination__link--active"}
 							/>
+							<PostList posts={posts} />
 						</React.Fragment>
 					) : (
 						<Loader
