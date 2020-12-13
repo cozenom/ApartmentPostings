@@ -5,10 +5,12 @@ const helper = require("./helper");
 
 const getAllPosts = (req, res) => {
 	console.log("req.query = ", req.query);
-	let page = req.query.page;
+	// console.log(req);
 
-	if (page < 1) {
-		page = 1;
+	if (parseInt(req.query.page) > 0) {
+		page = parseInt(req.query.page);
+	} else {
+		page = 0;
 	}
 
 	let sort = req.query.sort;
@@ -43,9 +45,10 @@ const getAllPosts = (req, res) => {
 
 	// read entire table
 	postController
-		.readAllPosts(page, sort, filter)
-		.then((posts) => {
-			res.json(posts);
+		.readAllPosts(page, sort, filter) // here <--
+		.then((result) => {
+			// console.log(result);
+			res.json(result);
 		})
 		.catch((err) => {
 			// Database call failed return 500 error

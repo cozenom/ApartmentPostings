@@ -3,7 +3,6 @@ import "./feed.css";
 import { getPosts } from "../../api/posts";
 import PostList from "../../components/post-list";
 import Loader from "react-loader-spinner";
-// import { Link } from "react-router-dom";
 // import SearchBar from "../../components/search-bar";
 import ReactPaginate from "react-paginate";
 import Filter from "../../components/filter";
@@ -13,7 +12,7 @@ const Feed = (props) => {
 	const [posts, setPosts] = useState([]);
 	const [nrofPosts, setnrofPosts] = useState(0);
 	const [dataAvailable, setDataAvailable] = useState(false);
-	const [currentPage, setCurrentPage] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
 	const [filter, setFilter] = useState({});
 	const [sort, setSort] = useState({});
 
@@ -50,44 +49,51 @@ const Feed = (props) => {
 		setCurrentPage(0);
 	}, [filter, sort]);
 
-	useEffect(() => {
+	useEffect(getPosts, [filter, sort, currentPage]);
+
+	const initialLoad = () => {
 		setDataAvailable(false);
 		getPosts(filter, sort, currentPage)
 			.then((response) => {
 				// Insert users
-				setPosts(response.data);
-				setnrofPosts(response.data.length);
+				setPosts(response.data.Data);
+				setnrofPosts(response.data.Count);
 				// Let UI know that the users are available
 				setDataAvailable(true);
 			})
 			.catch((err) => {
-				// TODO: Show error message
+				// Show error message
 				console.error("Failed to get all posts", err);
 			});
-	}, []);
-	const updateFilter = (filter) => {
-		console.log("update filter");
-		setFilter(filter);
-	};
-
-	const updateSort = (sort) => {
-		console.log("update sort");
-		setSort(sort);
-	};
-
-	useEffect(getPosts, [filter, sort, currentPage]);
-
-	const initialLoad = () => {
-		getPosts(filter, sort, currentPage);
 		setCurrentPage(0);
 	};
+
+	const fetchPosts = () => {
+		getPosts(filter, sort, currentPage)
+			.then((response) => {
+				// Insert users
+				setPosts(response.data.Data);
+				setnrofPosts(response.data.Count);
+				// Let UI know that the users are available
+				setDataAvailable(true);
+			})
+			.catch((err) => {
+				// Show error message
+				console.error("Failed to get all posts", err);
+			});
+	};
+
 	useEffect(initialLoad, []);
+	useEffect(() => {
+		setCurrentPage(0);
+	}, [filter, sort]);
+	useEffect(fetchPosts, [filter, sort, currentPage]);
 
 	return (
 		<div className="feed">
 			<div className="title" title="Home" />
-			<Filter updateFilter={updateFilter} />
-			<Sort updateSort={updateSort} />
+			<Filter updateFilter={setFilter} />
+			<Sort updateSort={setSort} />
 			<div className="container">
 				{
 					// Show loader until we load the user list
