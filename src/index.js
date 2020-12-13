@@ -14,6 +14,7 @@ import NotFound from "./views/not-found";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Sort from "./components/sort";
+import Filter from "./components/filter";
 
 // Services
 import { getUser } from "./service/user.service";
@@ -25,6 +26,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<Router>
 			<Header />
+			<Filter />
 			<Sort />
 			<div role="main" id="craigslist-body" className="craigslist-body">
 				<Switch>
