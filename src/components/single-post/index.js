@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./post.css";
+import "./single-post.css";
 import { convertDate } from "../../service/helper";
 import { imageSize, getImageUrl } from "../../service/imageURLgenerator";
-import { Link } from "react-router-dom";
 
-const Post = (props) => {
+const singlePost = (props) => {
+	console.log("Props :", props);
+	console.log(props.post);
+
 	return (
-		<Link
-			className="post-container"
-			to={{
-				pathname: "/post/" + props.post._id,
-				state: { postId: props.post._id, post: props.post },
-			}}
-		>
+		<div className="single-post">
 			<div
 				className="image"
 				style={{
@@ -37,9 +33,9 @@ const Post = (props) => {
 					Areas: {props.post.neighborhood.join(", ")}
 				</div>
 			</div>
-			{/* <div className="body">{props.post.body}</div> */}
-		</Link>
+			<div className="body">{props.post.body}</div>
+		</div>
 	);
 };
 
-export default Post;
+export default singlePost;

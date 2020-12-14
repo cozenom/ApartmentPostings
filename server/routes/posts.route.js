@@ -54,10 +54,9 @@ const getAllPosts = (req, res) => {
 
 const getOnePost = async (req, res) => {
 	const id = req.query.id;
-
 	if (!id || id.length !== 24) {
 		console.log(id, id.length);
-		return res.status(400).send("id is not valid"); // Invalid ID length
+		return res.status(400).send("id is invalid"); // Invalid ID length
 	} else {
 		const idExists = await helper.doesPostExist(id);
 		console.log(id);

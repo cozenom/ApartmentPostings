@@ -1,0 +1,66 @@
+.post-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+	background-color: white;
+	margin: 13px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.post-container .header {
+	width: calc(100% - 20px);
+	background-color: #4f5d75;
+	color: white;
+	height: 40px;
+	padding-left: 20px;
+	line-height: 40px;
+}
+
+.post-container .content .left {
+	width: 15%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.post-container .content .right {
+	font-family: "Open Sans", sans-serif;
+}
+
+.post-container .content .left p {
+	font-size: 16px;
+	line-height: 20px;
+	margin: 0;
+	text-align: center;
+}
+
+.post-container .content .left p.date {
+	font-size: 12px;
+}
+
+.post-container .content .icon {
+	width: 70px;
+	height: 70px;
+	text-align: center;
+	line-height: 70px;
+	border-radius: 35px;
+}
+
+.post-container .content {
+	padding: 20px;
+	display: flex;
+}
+
+.post-container .image {
+	width: 100px;
+	height: 75px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+}

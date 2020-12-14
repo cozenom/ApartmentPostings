@@ -8,7 +8,8 @@ import { Switch, Route, HashRouter as Router } from "react-router-dom";
 
 // Pages
 import Feed from "./views/feed";
-// import NotFound from "./views/not-found";
+import Post from "./views/post";
+import NotFound from "./views/not-found";
 
 // Components
 import Header from "./components/header";
@@ -26,9 +27,10 @@ ReactDOM.render(
 			<Header />
 			<div role="main" id="craigslist-body" className="craigslist-body">
 				<Switch>
-					<Route exact path="/">
-						<Feed />
-					</Route>
+					<Route exact path="/" component={Feed} />
+					<Route path="/post/:postId" component={Post} />
+					<Route path="/login"></Route>
+					<Route path="*" component={NotFound} />
 				</Switch>
 			</div>
 			<Footer />
