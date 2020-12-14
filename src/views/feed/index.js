@@ -26,7 +26,6 @@ const Feed = (props) => {
 		setDataAvailable(false);
 		fetchPosts;
 		setDataAvailable(true);
-		setCurrentPage(0);
 	};
 
 	const fetchPosts = () => {

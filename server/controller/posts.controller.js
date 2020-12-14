@@ -136,10 +136,6 @@ const readPost = (id) => {
 	});
 };
 
-const searchPost = (term) => {
-	return readPosts(term);
-};
-
 // Export all database functions
 module.exports = {
 	readAllPosts,

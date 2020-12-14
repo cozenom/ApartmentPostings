@@ -4,14 +4,8 @@ const router = express.Router();
 const helper = require("./helper");
 
 const getAllPosts = (req, res) => {
-	console.log("req.query = ", req.query);
-	// console.log(req);
+	// console.log("req.query = ", req.query);
 	page = parseInt(req.query.page);
-	// if (parseInt(req.query.page) > 0) {
-	// 	page = parseInt(req.query.page);
-	// } else {
-	// 	page = 0;
-	// }
 
 	sort = req.query.sort;
 	if (sort == "priceasc") {
@@ -32,8 +26,6 @@ const getAllPosts = (req, res) => {
 			filter
 		);
 	}
-
-	// console.log("Posts route: ", page, sort, filter);
 
 	// read entire table
 	postController

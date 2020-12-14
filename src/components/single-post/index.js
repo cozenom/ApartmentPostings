@@ -32,8 +32,8 @@ const singlePost = (props) => {
 				<div className="neighborhood">
 					Areas: {props.post.neighborhood.join(", ")}
 				</div>
+				<div className="body">{props.post.body}</div>
 			</div>
-			<div className="body">{props.post.body}</div>
 		</div>
 	);
 };
