@@ -11,11 +11,14 @@ const Sort = (props) => {
 		// console.log("New = ", sortBy, "Old = ", oldsortBy);
 		if (oldsortBy != sortBy) {
 			setSortBy(sortBy);
+
 			if (sortBy === "pricedesc") {
 				setSortOrder(-1);
 			} else {
 				setSortOrder(1);
 			}
+			props.updateSort(sortBy);
+
 			return;
 		} else {
 			return;

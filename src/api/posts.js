@@ -1,16 +1,16 @@
 import axios from "axios";
 import env from "../config/env";
 
-export const getPosts = (filter, sorting, page) => {
+export const getPosts = (filter, sort, page) => {
 	const uriFilter = encodeURIComponent(JSON.stringify(filter));
-	const uriSorting = encodeURIComponent(JSON.stringify(sorting));
+	console.log(uriFilter);
+	const uriSort = encodeURIComponent(sort);
+	// console.log(uriSort);
 	return axios.get(
 		`${
 			env[process.env.NODE_ENV].api
-		}/posts/all?page=${page}&filter=${uriFilter}&sort=${uriSorting}`
+		}/posts/all?page=${page}&filter=${uriFilter}&sort=${uriSort}`
 	);
-	// console.log(`${env[process.env.NODE_ENV].api}/posts/all/`);
-	// return axios.get(`${env[process.env.NODE_ENV].api}/posts/all/`);
 };
 
 export const searchAllPosts = (searchTerm) => {

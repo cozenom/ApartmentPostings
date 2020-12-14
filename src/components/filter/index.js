@@ -8,18 +8,19 @@ const Filter = (props) => {
 	const [minarea, setminArea] = useState("0");
 	const [maxarea, setMaxArea] = useState("999999");
 	const [newFilter, setNewFilter] = useState({});
-	const [oldFilter, setOldFilter] = useState({});
 
 	useEffect(() => {
-		setNewFilter({
-			min: minPrice,
-			max: maxPrice,
+		const currentFilter = {
+			minPrice,
+			maxPrice,
 			minbedrooms,
 			minarea,
 			maxarea,
-		});
-		if (oldFilter != newFilter) {
-			setOldFilter(newFilter);
+		};
+		if (currentFilter != newFilter) {
+			// console.log("New  ", currentFilter, "Old ", newFilter);
+			setNewFilter(currentFilter);
+			props.updateFilter(currentFilter);
 			return;
 		} else {
 			return;
@@ -52,7 +53,7 @@ const Filter = (props) => {
 						type="number"
 						value={minbedrooms}
 					/>{" "}
-					<span>BR</span>
+					BR
 				</div>
 				<div className="area">
 					{" "}

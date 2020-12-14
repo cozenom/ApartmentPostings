@@ -22,6 +22,9 @@ def cleanjson(data):
         if i['price'] != None:
             i['price'] = i['price'].replace('$','')
             i['price'] = i['price'].replace(',','')
+            i['price'] = int(i['price'])
+        else:
+            i['price'] = int(0)
 
         # Split neighborhood into array
         split = []
@@ -48,8 +51,14 @@ def cleanjson(data):
                 tmp = split[0]
                 split += [tmp]
                 split[0] = ''
-            i['bedrooms'] = split[0]
-            i['area'] = split[1]
+            if split[0]!='':
+                i['bedrooms'] = int(split[0])
+            else:
+                i['bedrooms'] = int(0)
+            if split[1]!='':
+                i['area'] = int(split[1])
+            else:
+                i['area'] = int(0)
 
         # Remove qrcode text
         if i['postingbody'] != None:

@@ -14,9 +14,6 @@ const Header = (props) => {
 				<Link aria-label="Navigate to Home page" to="/">
 					Home
 				</Link>
-				<Link aria-label="Navigate to new thread page" to="/thread/new_thread">
-					New thread
-				</Link>
 			</nav>
 			<div className="login">
 				{currentUser.id ? (

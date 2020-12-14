@@ -4,43 +4,35 @@ const PER_PAGE = 10;
 
 const readAllPosts = (page, sort, filter) => {
 	return new Promise((resolve, reject) => {
-		console.log("Readallposts received: ", page, sort, filter);
+		// console.log("Readallposts received: ", page, sort, filter);
+
 		query = [];
+		console.log("page: ", page);
+		// console.log({ $match: { price: { $gte: parseInt(filter.minPrice) } } });
+		// console.log({ $match: { price: { $lte: parseInt(filter.maxPrice) } } });
+		// console.log({
+		// 	$match: { bedrooms: { $gte: parseInt(filter.minbedrooms) } },
+		// });
+		// console.log({ $match: { area: { $gte: parseInt(filter.minarea) } } });
+		// console.log({ $match: { area: { $lte: parseInt(filter.maxarea) } } });
 
-		if (filter && filter.minPrice) {
-			query.push({ $match: { price: { $gte: parseInt(filter.minPrice) } } });
-			console.log("1");
+		if (filter) {
+			if (filter.minPrice) {
+				query.push({ $match: { price: { $gte: parseInt(filter.minPrice) } } });
+				query.push({ $match: { price: { $lte: parseInt(filter.maxPrice) } } });
+				query.push({
+					$match: { bedrooms: { $gte: parseInt(filter.minbedrooms) } },
+				});
+				query.push({ $match: { area: { $gte: parseInt(filter.minarea) } } });
+				query.push({ $match: { area: { $lte: parseInt(filter.maxarea) } } });
+			}
 		}
 
-		if (filter && filter.maxPrice) {
-			query.push({ $match: { price: { $lte: parseInt(filter.maxPrice) } } });
-			console.log("2");
-		}
-
-		if (filter && filter.minbedrooms) {
-			query.push({
-				$match: { bedrooms: { $gte: parseInt(filter.minbedrooms) } },
-			});
-			console.log("3");
-		}
-
-		if (filter && filter.minarea) {
-			query.push({ $match: { area: { $gte: parseInt(filter.minarea) } } });
-			console.log("4");
-		}
-
-		if (filter && filter.maxarea) {
-			query.push({ $match: { area: { $gte: parseInt(filter.maxarea) } } });
-			console.log("5");
-		}
-
-		// console.log("Query = ", query);
-		console.log("page =", page);
 		const fetchDB = new Promise((resolve, reject) => {
 			queryData = [...query];
 			// TODO - ugly af, fix
-			if (sort && sort.sortBy) {
-				if (sort.sortBy === "priceasc") {
+			if (sort) {
+				if (String(sort) === "priceasc") {
 					queryData.push(
 						...[
 							{ $sort: { price: 1 } },
@@ -48,7 +40,7 @@ const readAllPosts = (page, sort, filter) => {
 							{ $limit: PER_PAGE },
 						]
 					);
-				} else if (sort.sortBy === "pricedesc") {
+				} else if (String(sort) === "pricedesc") {
 					queryData.push(
 						...[
 							{ $sort: { price: -1 } },
@@ -75,8 +67,7 @@ const readAllPosts = (page, sort, filter) => {
 					]
 				);
 			}
-			console.log("Querydata = ", queryData);
-
+			// console.log("queryData", queryData);
 			// Get data
 			mongoClient
 				.getDatabase()
@@ -95,8 +86,6 @@ const readAllPosts = (page, sort, filter) => {
 		const fetchcount = new Promise((resolve, reject) => {
 			query.push(...[{ $count: "total" }]);
 			// Get count
-			console.log("Getting count");
-			console.log(query);
 			mongoClient
 				.getDatabase()
 				.connection.collection("Apts")
@@ -137,7 +126,6 @@ const readPost = (id) => {
 			.getDatabase()
 			.connection.collection("Apts")
 			.findOne({ _id: mongo.ObjectId(id) })
-			.aggregate(query)
 			.then((docs) => {
 				resolve(docs);
 			})

@@ -41,7 +41,7 @@ const initConnection = () => {
 		console.log("Connecting to db");
 		mongoDb(uri, "Apts").then((db) => {
 			database = db;
-			console.log("Initialzied db");
+			console.log("Initialized db");
 			// Resolve the connection
 			resolve();
 		});
@@ -51,7 +51,6 @@ const initConnection = () => {
 // Return the database
 // This will be used in the controllers
 const getDatabase = () => {
-	console.log("getDatabase");
 	return database;
 };
 

@@ -16,66 +16,28 @@ const Feed = (props) => {
 	const [filter, setFilter] = useState({});
 	const [sort, setSort] = useState({});
 
-	// const [searchPosts, setSearchPosts] = useState([]);
-	// const [searchDone, setSearchDone] = useState(false);
-	// const [searchTerm, setSearchTerm] = useState("");
-
 	const PER_PAGE = 10;
-
-	// const triggerSearch = () => {
-	// 	if (searchTerm !== "") {
-	// 		onSearch(searchTerm);
-	// 	} else {
-	// 		setSearchThreads(threads);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	if (searchThreads.length > 0) {
-	// 		// search list
-	// 		const currentPageData = searchThreads.slice(offset, offset + PER_PAGE);
-	// 		setVisibleThreads(currentPageData);
-	// 	} else {
-	// 		const currentPageData = threads.slice(offset, offset + PER_PAGE);
-	// 		setVisibleThreads(currentPageData);
-	// 	}
-	// }, [threads, searchThreads, offset]);
 
 	function handlePageClick({ selected: selectedPage }) {
 		setCurrentPage(selectedPage);
 	}
 
-	useEffect(() => {
-		setCurrentPage(0);
-	}, [filter, sort]);
-
-	useEffect(getPosts, [filter, sort, currentPage]);
-
 	const initialLoad = () => {
 		setDataAvailable(false);
-		getPosts(filter, sort, currentPage)
-			.then((response) => {
-				// Insert users
-				setPosts(response.data.Data);
-				setnrofPosts(response.data.Count);
-				// Let UI know that the users are available
-				setDataAvailable(true);
-			})
-			.catch((err) => {
-				// Show error message
-				console.error("Failed to get all posts", err);
-			});
+		fetchPosts;
+		setDataAvailable(true);
 		setCurrentPage(0);
 	};
 
 	const fetchPosts = () => {
+		// console.log("fetchposts: ", filter, sort, currentPage);
 		getPosts(filter, sort, currentPage)
 			.then((response) => {
 				// Insert users
 				setPosts(response.data.Data);
 				setnrofPosts(response.data.Count);
+
 				// Let UI know that the users are available
-				setDataAvailable(true);
 			})
 			.catch((err) => {
 				// Show error message
@@ -83,15 +45,14 @@ const Feed = (props) => {
 			});
 	};
 
-	useEffect(initialLoad, []);
+	useEffect(fetchPosts, [filter, sort, currentPage]);
+	useEffect(initialLoad, [fetchPosts]);
 	useEffect(() => {
 		setCurrentPage(0);
 	}, [filter, sort]);
-	useEffect(fetchPosts, [filter, sort, currentPage]);
 
 	return (
 		<div className="feed">
-			<div className="title" title="Home" />
 			<Filter updateFilter={setFilter} />
 			<Sort updateSort={setSort} />
 			<div className="container">

@@ -1,5 +1,5 @@
 // const userController = require("../controller/user.controller");
-const threadController = require("../controller/posts.controller");
+const postController = require("../controller/posts.controller");
 
 // const doesUserExist = (email) => {
 // 	return new Promise((resolve, reject) => {
@@ -35,19 +35,21 @@ const threadController = require("../controller/posts.controller");
 // 	});
 // };
 
-const doesThreadExistByThreadId = (id) => {
+const doesPostExist = (id) => {
 	return new Promise((resolve, reject) => {
-		threadController
-			.checkThreadID({ id })
+		postController
+			.readPost(id)
 			.then((doc) => {
-				if (doc && doc.length && doc.length > 0) {
+				console.log("doc:", doc && doc._id && doc.body.length > 0);
+
+				if (doc && doc._id && doc.body.length > 0) {
 					resolve(true);
 				} else {
 					resolve(false);
 				}
 			})
-			.catch(() => {
-				reject("Failed to check if thread exists");
+			.catch((err) => {
+				reject("Failed to check if thread exists", err);
 			});
 	});
 };
@@ -55,5 +57,5 @@ const doesThreadExistByThreadId = (id) => {
 module.exports = {
 	// 	doesUserExist,
 	// 	doesUserExistByUserId,
-	doesThreadExistByThreadId,
+	doesPostExist,
 };
