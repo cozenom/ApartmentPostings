@@ -1,25 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Switch, Route, HashRouter as Router } from "react-router-dom";
-// Route
-// import AuthenticatedRoute from "./components/authenticated-route";
+import "./index.css";
+import { getUser } from "./service/user.service";
 
 // Pages
 import Feed from "./views/feed";
 import Post from "./views/post";
 import NotFound from "./views/not-found";
+import Authenticate from "./views/authenticate";
 
 // Components
 import Header from "./components/header";
 import Footer from "./components/footer";
 
-// Services
-// import { getUser } from "./service/user.service";
-
-// Load cached user
-// getUser();
+getUser();
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -29,7 +25,7 @@ ReactDOM.render(
 				<Switch>
 					<Route exact path="/" component={Feed} />
 					<Route path="/post/:postId" component={Post} />
-					<Route path="/login"></Route>
+					<Route path="/login" component={Authenticate} />
 					<Route path="*" component={NotFound} />
 				</Switch>
 			</div>

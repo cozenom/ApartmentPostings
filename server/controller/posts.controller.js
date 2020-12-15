@@ -7,7 +7,6 @@ const readAllPosts = (page, sort, filter) => {
 		// console.log("Readallposts received: ", page, sort, filter);
 
 		query = [];
-		console.log("page: ", page);
 		// console.log({ $match: { price: { $gte: parseInt(filter.minPrice) } } });
 		// console.log({ $match: { price: { $lte: parseInt(filter.maxPrice) } } });
 		// console.log({
@@ -107,11 +106,10 @@ const readAllPosts = (page, sort, filter) => {
 		// Both
 		Promise.all([fetchDB, fetchcount])
 			.then((data) => {
-				console.log("Got data & count");
+				console.log("Got db & dbcount");
 				const result = {};
 				result.Data = data[0];
 				result.Count = data[1].total;
-				// console.log(result);
 				resolve(result);
 			})
 			.catch((err) => {

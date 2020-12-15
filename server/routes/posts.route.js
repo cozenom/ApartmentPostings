@@ -4,7 +4,6 @@ const router = express.Router();
 const helper = require("./helper");
 
 const getAllPosts = (req, res) => {
-	// console.log("req.query = ", req.query);
 	page = parseInt(req.query.page);
 
 	sort = req.query.sort;
@@ -17,14 +16,10 @@ const getAllPosts = (req, res) => {
 	let filter = req.query.filter;
 	try {
 		filter = decodeURIComponent(filter);
-		// console.log("Filter = ", filter, JSON.parse(filter));
 		filter = JSON.parse(filter);
 	} catch (error) {
 		filter = {};
-		console.log(
-			"getAllPosts: Failed to parse filter, using default values",
-			filter
-		);
+		// console.log("getAllPosts: Failed to parse filter, using default values",filter);
 	}
 
 	// read entire table
@@ -47,11 +42,9 @@ const getAllPosts = (req, res) => {
 const getOnePost = async (req, res) => {
 	const id = req.query.id;
 	if (!id || id.length !== 24) {
-		console.log(id, id.length);
 		return res.status(400).send("id is invalid"); // Invalid ID length
 	} else {
 		const idExists = await helper.doesPostExist(id);
-		console.log(id);
 		if (!idExists) {
 			return res.status(400).send("id does not exist"); // ID doesn't exist
 		}

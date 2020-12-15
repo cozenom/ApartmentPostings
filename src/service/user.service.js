@@ -1,16 +1,8 @@
 import { deleteCookie, getCookie, setCookie } from "./cookie.service";
-const COOKIE_NAME = "forum-user";
-// Should have the following properties
-/*
-    this.id 
-    this.name
-    this.created
-    this.updated
-    this.email
-    this.active
-*/
+const COOKIE_NAME = "user";
 
 const addUser = (user) => {
+	// console.log("Adding ", user);
 	Object.assign(currentUser, user);
 	setCookie(COOKIE_NAME, JSON.stringify(currentUser), 1);
 };
@@ -34,7 +26,7 @@ const getUser = () => {
 const logOut = () => {
 	Object.assign(currentUser);
 	deleteCookie(COOKIE_NAME);
-	window.location.href = "/forum";
+	window.location.href = "/";
 };
 
 let initialLoad = false;

@@ -1,39 +1,22 @@
-// const userController = require("../controller/user.controller");
+const userController = require("../controller/user.controller");
 const postController = require("../controller/posts.controller");
 
-// const doesUserExist = (email) => {
-// 	return new Promise((resolve, reject) => {
-// 		userController
-// 			.readUser({ email })
-// 			.then((doc) => {
-// 				if (doc && doc.length && doc.length > 0) {
-// 					reject("User already exists");
-// 				} else {
-// 					resolve();
-// 				}
-// 			})
-// 			.catch(() => {
-// 				reject("Failed to check if user exits");
-// 			});
-// 	});
-// };
-
-// const doesUserExistByUserId = (id) => {
-// 	return new Promise((resolve, reject) => {
-// 		userController
-// 			.readUser({ id })
-// 			.then((doc) => {
-// 				if (doc && doc.length && doc.length > 0) {
-// 					resolve(true);
-// 				} else {
-// 					resolve(false);
-// 				}
-// 			})
-// 			.catch(() => {
-// 				reject("Failed to check if user exits");
-// 			});
-// 	});
-// };
+const doesUserExist = (username) => {
+	return new Promise((resolve, reject) => {
+		userController
+			.readUser({ username })
+			.then((doc) => {
+				if (doc && doc.length && doc.length > 0) {
+					reject("User already exists");
+				} else {
+					resolve();
+				}
+			})
+			.catch(() => {
+				reject("Failed to check if user exits");
+			});
+	});
+};
 
 const doesPostExist = (id) => {
 	return new Promise((resolve, reject) => {
@@ -55,7 +38,6 @@ const doesPostExist = (id) => {
 };
 
 module.exports = {
-	// 	doesUserExist,
-	// 	doesUserExistByUserId,
+	doesUserExist,
 	doesPostExist,
 };

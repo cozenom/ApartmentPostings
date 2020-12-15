@@ -4,9 +4,6 @@ import { convertDate } from "../../service/helper";
 import { imageSize, getImageUrl } from "../../service/imageURLgenerator";
 
 const singlePost = (props) => {
-	console.log("Props :", props);
-	console.log(props.post);
-
 	return (
 		<div className="single-post">
 			<div

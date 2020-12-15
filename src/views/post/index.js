@@ -8,15 +8,13 @@ const Post = (props) => {
 	const [id, setId] = useState();
 	const [post, setPost] = useState(undefined);
 	const [dataAvailable, setDataAvailable] = useState(false);
-	console.log("Views/post/props", props.match.params.postId);
+	// console.log("Views/post/props", props.match.params.postId);
 
 	const initialLoad = () => {
 		if (props.location && props.location.state && props.location.state.postId) {
 			setId(props.location.state.postId);
-			console.log("Updated id");
 		} else if (props.match && props.match.params && props.match.params.postId) {
 			setId(props.match.params.postId);
-			console.log("Updated id", id, props.match.params.postId);
 		} else {
 			setRedirectToHome(true);
 		}
@@ -26,11 +24,8 @@ const Post = (props) => {
 	const fetchPost = () => {
 		// console.log("fetchposts: ", filter, sort, currentPage);
 		if (id && !post) {
-			console.log("id", id);
-
 			getPost(id)
 				.then((response) => {
-					console.log("Fetchpost ", response);
 					setPost(response.data);
 					setDataAvailable(true);
 				})

@@ -1,13 +1,11 @@
 import React from "react";
-// import "./header.css";
+import "./header.css";
 import { Link, withRouter } from "react-router-dom";
 import { currentUser, logOut } from "../../service/user.service";
 
-// Change the page in router to the correct querystring
-// uses react-router linking
-// we can restyle this to be in a nav bar
-
 const Header = (props) => {
+	// console.log("Props: ", props);
+	// console.log("Currentuser: ", currentUser, currentUser.id);
 	return (
 		<header role="banner" className="active" id="scroll-header">
 			<nav role="navigation" className="menu">
@@ -16,12 +14,11 @@ const Header = (props) => {
 				</Link>
 			</nav>
 			<div className="login">
-				{currentUser.id ? (
+				{currentUser._id ? (
 					<div>
-						<div className="user">Hello {currentUser.name}</div>
+						<div className="user">Hello {currentUser.username}</div>
 						<button onClick={logOut} aria-label="Logout button">
-							{" "}
-							Logout{" "}
+							Logout
 						</button>
 					</div>
 				) : (
