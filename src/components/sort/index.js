@@ -28,15 +28,17 @@ const Sort = (props) => {
 	return (
 		<div className="sort">
 			<div className="sort-by">
-				<span>Sort by</span>
-				<select
-					value={sortBy}
-					onChange={(event) => setSortBy(event.target.value)}
-				>
-					<option value="date">newest</option>
-					<option value="priceasc">price↑</option>
-					<option value="pricedesc">price↓</option>
-				</select>
+				<div>
+					Sort by-
+					<select
+						value={sortBy}
+						onChange={(event) => setSortBy(event.target.value)}
+					>
+						<option value="date">newest</option>
+						<option value="priceasc">price↑</option>
+						<option value="pricedesc">price↓</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	);

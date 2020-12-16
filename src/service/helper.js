@@ -6,7 +6,7 @@ export const convertDateToFromNow = (date) => {
 };
 
 export const convertDate = (date) => {
-	return moment.unix(date).format("hh:mm:ss, Do MMMM YYYY");
+	return moment.unix(date).format("Do MMMM YYYY, hh:mm");
 };
 
 export const getRandomBackgroundColor = (str) => {

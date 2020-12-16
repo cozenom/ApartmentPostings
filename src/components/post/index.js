@@ -13,31 +13,27 @@ const Post = (props) => {
 				state: { postId: props.post._id, post: props.post },
 			}}
 		>
-			<div
-				className="image"
-				style={{
-					backgroundImage: `url(${getImageUrl(
-						props.post.images[0],
-						imageSize.M
-					)})`,
-				}}
-			></div>
 			<div className="content">
 				<div className="title">{props.post.title}</div>
-				<div className="extra">
-					<div className="date">
-						Date Posted: {convertDate(props.post.date)}
-					</div>
+				<div className="left">
+					<div className="date"> </div>
 					<div className="price">Price: ${props.post.price}</div>
 					<div className="bedrooms">BR: {props.post.bedrooms}</div>
-					<div className="area">Area: {props.post.area} sqft</div>
-					<div className="address">Address: {props.post.mapaddress}</div>
-				</div>
-				<div className="neighborhood">
-					Areas: {props.post.neighborhood.join(", ")}
+					<div className="area">Area: {props.post.area} sqft</div>Posted:{" "}
+					{convertDate(props.post.date)}
 				</div>
 			</div>
-			{/* <div className="body">{props.post.body}</div> */}
+			<div className="right">
+				<div
+					className="image"
+					style={{
+						backgroundImage: `url(${getImageUrl(
+							props.post.images[0],
+							imageSize.M
+						)})`,
+					}}
+				></div>
+			</div>
 		</Link>
 	);
 };

@@ -52,8 +52,10 @@ const Feed = (props) => {
 
 	return (
 		<div className="feed">
-			<Filter updateFilter={setFilter} />
-			<Sort updateSort={setSort} />
+			<div className="top">
+				<Filter updateFilter={setFilter} />
+				<Sort updateSort={setSort} />
+			</div>
 			<div className="container">
 				{
 					// Show loader until we load the user list
@@ -75,7 +77,7 @@ const Feed = (props) => {
 					) : (
 						<Loader
 							type="Puff"
-							color="#4f5d75"
+							color="black"
 							height={100}
 							width={100}
 							className="loader"

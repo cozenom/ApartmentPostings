@@ -1,11 +1,9 @@
 import React from "react";
-// import "./header.css";
+import "./header.css";
 import { Link, withRouter } from "react-router-dom";
 import { currentUser, logOut } from "../../service/user.service";
 
 const Header = (props) => {
-	// console.log("Props: ", props);
-	// console.log("Currentuser: ", currentUser, currentUser.id);
 	return (
 		<header role="banner" className="active" id="scroll-header">
 			<nav role="navigation" className="menu">

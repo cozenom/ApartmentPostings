@@ -30,48 +30,50 @@ const Filter = (props) => {
 	return (
 		<div className="filter">
 			<div className="filter-container">
-				<div className="price">
-					$
+				<span>
 					<input
 						onChange={(event) => setMinPrice(event.target.value)}
 						min="0"
 						type="number"
 						value={minPrice}
-					/>{" "}
-					- $
+					/>
+					{"  "}$ -
 					<input
 						onChange={(event) => setMaxPrice(event.target.value)}
 						min="0"
 						type="number"
 						value={maxPrice}
 					/>
-				</div>
-				<div className="bedrooms">
+					{"  "}${"  "}
+				</span>
+				<span>
 					<input
 						onChange={(event) => setminBedrooms(event.target.value)}
 						min="0"
 						type="number"
 						value={minbedrooms}
-					/>{" "}
-					BR
-				</div>
-				<div className="area">
-					{" "}
+					/>
+					{"  "}
+					BR{"  "}
+				</span>
+				<span>
 					<input
 						onChange={(event) => setminArea(event.target.value)}
 						min="0"
 						type="number"
 						value={minarea}
 					/>
-					sqft -
+					{"  "}
+					sqft -{"  "}
 					<input
 						onChange={(event) => setMaxArea(event.target.value)}
 						min="0"
 						type="number"
 						value={maxarea}
 					/>
+					{"  "}
 					sqft
-				</div>
+				</span>
 			</div>
 		</div>
 	);
