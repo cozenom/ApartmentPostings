@@ -24,7 +24,7 @@ const doesPostExist = (id) => {
 			.readPost(id)
 			.then((doc) => {
 				// console.log("doc:", doc && doc._id && doc.body.length > 0);
-				if (doc && doc._id && doc.body.length > 0) {
+				if (doc && doc._id) {
 					resolve(true);
 				} else {
 					resolve(false);
