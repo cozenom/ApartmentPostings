@@ -108,7 +108,7 @@ const Post = (props) => {
 					</div>
 				) : (
 					<Loader
-						type="Puff"
+						type="TailSpin"
 						color="#551A8B"
 						height={100}
 						width={100}

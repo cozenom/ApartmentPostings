@@ -76,7 +76,7 @@ const Feed = (props) => {
 						</React.Fragment>
 					) : (
 						<Loader
-							type="Puff"
+							type="TailSpin"
 							color="#551A8B"
 							height={100}
 							width={100}
