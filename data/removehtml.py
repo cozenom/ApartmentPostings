@@ -3,11 +3,13 @@ import json
 import time
 import datetime
 
+
 def cleanhtml(raw_html):
-  cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
-  print('cleanhtml done')
-  return cleantext
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, '', raw_html)
+    print('cleanhtml done')
+    return cleantext
+
 
 def cleanjson(data):
     for i in data:
@@ -19,19 +21,19 @@ def cleanjson(data):
             i['images'][j] = url
 
         # Remove symbols from price
-        if i['price'] != None:
-            i['price'] = i['price'].replace('$','')
-            i['price'] = i['price'].replace(',','')
+        if i['price'] is not None:
+            i['price'] = i['price'].replace('$', '')
+            i['price'] = i['price'].replace(',', '')
             i['price'] = int(i['price'])
-        else:
+        if type(i['price']) is not int:
             i['price'] = int(0)
 
         # Split neighborhood into array
         split = []
         if i['result-hood'] != None:
-            neighborhood = i['result-hood'].replace(' (','')
-            neighborhood = neighborhood.replace(')','')
-            neighborhood = neighborhood.replace(' / ',',')
+            neighborhood = i['result-hood'].replace(' (', '')
+            neighborhood = neighborhood.replace(')', '')
+            neighborhood = neighborhood.replace(' / ', ',')
             split = neighborhood.split(',')
         i['neighborhood'] = split
 
@@ -44,30 +46,37 @@ def cleanjson(data):
         # Split housing into array
         split = []
         if i['housing'] != None:
-            rooms = i['housing'].replace('/ ','')
-            rooms = rooms.replace('ft','')
+            rooms = i['housing'].replace('/ ', '')
+            rooms = rooms.replace('ft', '')
             split = rooms.split('br - ')
             if len(split) == 1:
                 tmp = split[0]
                 split += [tmp]
                 split[0] = ''
-            if split[0]!='':
+            if split[0] != '':
                 i['bedrooms'] = int(split[0])
             else:
                 i['bedrooms'] = int(0)
-            if split[1]!='':
+            if split[1] != '':
                 i['area'] = int(split[1])
             else:
                 i['area'] = int(0)
+        else:
+            i['bedrooms'] = int(0)
+            i['area'] = int(0)
 
         # Remove qrcode text
         if i['postingbody'] != None:
-            i['postingbody'] = i['postingbody'].replace('<section id=\"postingbody\">\n        <div class=\"print-information print-qrcode-container\">\n            <p class=\"print-qrcode-label\">QR Code Link to This Post</p>\n            ','')
-            i['postingbody'] = i['postingbody'].replace('\n        ','')
-
-
+            i['postingbody'] = cleanhtml(i['postingbody'])
+            i['postingbody'] = i['postingbody'].replace(
+                '\n        \n            QR Code Link to This Post\n            ',
+                '')
+            i['postingbody'] = i['postingbody'].replace('\n        ', '')
+            i['postingbody'] = re.sub('\n', '<br/ >', i['postingbody'])
+            # i['postingbody'] = i['postingbody'].replace('\n', '<br/>')
         # Delete unused
-        unused = ['url','result-price','housing','result-hood','result-tags','result-date','postinginfo','titletextonly','attrgroup','hood']
+        unused = ['url', 'result-price', 'housing', 'result-hood', 'result-tags', 'result-date', 'postinginfo',
+                  'titletextonly', 'attrgroup', 'hood']
         for j in unused:
             del i[j]
     print("cleanjson done")
@@ -76,22 +85,20 @@ def cleanjson(data):
 
 if __name__ == '__main__':
     x = open("apts.json", "r+")
-
     data = json.load(x)
-    data = cleanjson(data)
     x.close()
+
+    data = cleanjson(data)
 
     with open("apts_clean.json", "w") as outfile:
         json.dump(data, outfile)
     with open("apts_clean.json", "r") as outfile:
         y = outfile.read()
-    #print(y)
-    y = cleanhtml(y)
-    #y = y.replace('"\n        \n            QR Code Link to This Post\n            \n        \n','"\n')
-    y = y.replace('"postingbody":','"body":')
-    y = y.replace('"result-title":','"title":')
+
+    # y = cleanhtml(y)
+    y = y.replace('"postingbody":', '"body":')
+    y = y.replace('"result-title":', '"title":')
+    y = y.replace('\n          ', '')
 
     with open("apts_clean_nohtml.json", "w") as outfile:
         outfile.write(y)
-
-

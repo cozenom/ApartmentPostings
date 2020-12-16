@@ -6,6 +6,7 @@ import { convertDate } from "../../service/helper";
 import "./postgallery.css";
 import ImageGallery from "react-image-gallery";
 import { imageSize, getImageUrl } from "../../service/imageURLgenerator";
+import ReactHtmlParser from "react-html-parser";
 
 const Post = (props) => {
 	const [id, setId] = useState();
@@ -103,7 +104,7 @@ const Post = (props) => {
 								{post.neighborhood.join(", ")}
 							</div>
 							<hr />
-							<div className="body">{post.body}</div>
+							<div className="body">{ReactHtmlParser(post.body)}</div>
 						</div>
 					</div>
 				) : (
