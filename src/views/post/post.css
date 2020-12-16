@@ -1,0 +1,21 @@
+.post {
+	height: 100%;
+	width: 80%;
+	position: relative;
+	margin-left: 10%;
+	padding-top: 35px;
+}
+
+.post .filter-container {
+	margin: 10px;
+	width: 100%;
+}
+
+.post .title {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+hr {
+	border: 5px solid #551a8b;
+}

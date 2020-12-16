@@ -77,7 +77,7 @@ const Feed = (props) => {
 					) : (
 						<Loader
 							type="Puff"
-							color="black"
+							color="#551A8B"
 							height={100}
 							width={100}
 							className="loader"

@@ -3,7 +3,7 @@ import "./post.css";
 import { getPost } from "../../api/posts";
 import Loader from "react-loader-spinner";
 import { convertDate } from "../../service/helper";
-import "react-image-gallery/styles/css/image-gallery.css";
+import "./postgallery.css";
 import ImageGallery from "react-image-gallery";
 import { imageSize, getImageUrl } from "../../service/imageURLgenerator";
 
@@ -66,33 +66,50 @@ const Post = (props) => {
 					<div className="post">
 						<div className="content">
 							<div className="title">{post.title}</div>
-							<div>
+							<hr />
+							<div className="gallery">
 								<ImageGallery
 									items={pics}
 									showPlayButton={false}
 									showFullscreenButton={false}
-									showIndex={true}
+									showIndex={false}
+									additionalClass="image-gallery"
 								/>
-								<div className="extra">
-									<div className="date">
-										Date Posted: {convertDate(post.date)}
-									</div>
-									<div className="price">Price: ${post.price}</div>
-									<div className="bedrooms">BR: {post.bedrooms}</div>
-									<div className="area">Area: {post.area} sqft</div>
-									<div className="address">Address: {post.mapaddress}</div>
-								</div>
-								<div className="neighborhood">
-									Areas: {post.neighborhood.join(", ")}
-								</div>
-								<div className="body">{post.body}</div>
 							</div>
-						</div>{" "}
+							<hr />
+							<div className="extra">
+								<div className="date">
+									<b>Date Posted: </b>
+									{convertDate(post.date)}
+								</div>
+								<div className="price">
+									<b>Price: </b>${post.price}
+								</div>
+								<div className="bedrooms">
+									<b>BR: </b>
+									{post.bedrooms}
+								</div>
+								<div className="area">
+									<b>Area: </b>
+									{post.area} sqft
+								</div>
+								<div className="address">
+									<b>Address: </b>
+									{post.mapaddress}
+								</div>
+							</div>
+							<div className="neighborhood">
+								<b>Neighborhood: </b>
+								{post.neighborhood.join(", ")}
+							</div>
+							<hr />
+							<div className="body">{post.body}</div>
+						</div>
 					</div>
 				) : (
 					<Loader
 						type="Puff"
-						color="#4f5d75"
+						color="#551A8B"
 						height={100}
 						width={100}
 						className="loader"
