@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./post.css";
 import { getPost } from "../../api/posts";
 import Loader from "react-loader-spinner";
-import SinglePost from "../../components/single-post";
+import { convertDate } from "../../service/helper";
+import "react-image-gallery/styles/css/image-gallery.css";
+import ImageGallery from "react-image-gallery";
+import { imageSize, getImageUrl } from "../../service/imageURLgenerator";
 
 const Post = (props) => {
 	const [id, setId] = useState();
 	const [post, setPost] = useState(undefined);
 	const [dataAvailable, setDataAvailable] = useState(false);
+	const [pics, setPics] = useState(null);
+
 	// console.log("Views/post/props", props.match.params.postId);
 
 	const initialLoad = () => {
@@ -18,7 +23,9 @@ const Post = (props) => {
 		} else {
 			setRedirectToHome(true);
 		}
+		fetchPost;
 	};
+
 	useEffect(initialLoad, [props.location, props.match]);
 
 	const fetchPost = () => {
@@ -38,23 +45,59 @@ const Post = (props) => {
 
 	useEffect(fetchPost, [id, post]);
 
+	const getPics = () => {
+		if (post && post.images) {
+			setPics(
+				post.images.map((id) => ({
+					original: `${getImageUrl(id, imageSize.L)}`,
+					thumbnail: `${getImageUrl(id, imageSize.S)}`,
+				}))
+			);
+		} else {
+			// setRedirectToHome(true);
+		}
+	};
+	useEffect(getPics, [post]);
+
 	return (
 		<div className="post">
 			<div className="container">
-				{
-					// Show loader until we load the user list
-					dataAvailable ? (
-						<SinglePost post={post} />
-					) : (
-						<Loader
-							type="Puff"
-							color="#4f5d75"
-							height={100}
-							width={100}
-							className="loader"
-						/>
-					)
-				}
+				{dataAvailable ? (
+					<div className="post">
+						<div className="content">
+							<div className="title">{post.title}</div>
+							<div>
+								<ImageGallery
+									items={pics}
+									showPlayButton={false}
+									showFullscreenButton={false}
+									showIndex={true}
+								/>
+								<div className="extra">
+									<div className="date">
+										Date Posted: {convertDate(post.date)}
+									</div>
+									<div className="price">Price: ${post.price}</div>
+									<div className="bedrooms">BR: {post.bedrooms}</div>
+									<div className="area">Area: {post.area} sqft</div>
+									<div className="address">Address: {post.mapaddress}</div>
+								</div>
+								<div className="neighborhood">
+									Areas: {post.neighborhood.join(", ")}
+								</div>
+								<div className="body">{post.body}</div>
+							</div>
+						</div>{" "}
+					</div>
+				) : (
+					<Loader
+						type="Puff"
+						color="#4f5d75"
+						height={100}
+						width={100}
+						className="loader"
+					/>
+				)}
 			</div>
 		</div>
 	);
