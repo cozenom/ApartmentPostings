@@ -5,7 +5,7 @@ environment["development"] = {
 };
 
 environment["production"] = {
-	api: "https://webdev-forum-backend.herokuapp.com",
+	api: "https://craigslistapts.herokuapp.com",
 };
 
 export default environment;
