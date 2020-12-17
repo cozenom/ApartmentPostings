@@ -47,7 +47,7 @@ const addComment = async (req, res) => {
 
 const getComments = async (req, res) => {
 	if (req) {
-		console.log("getComments", req.query.id, req.query.user);
+		// console.log("getComments", req.query.id, req.query.user);
 		const postId = req.query.id;
 		userId = req.query.user.toString();
 		if (!postId || postId.length !== 24) {
