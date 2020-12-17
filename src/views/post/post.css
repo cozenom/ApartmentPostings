@@ -20,19 +20,3 @@
 hr {
 	border: 5px solid #551a8b;
 }
-
-.likeBtn button {
-	width: 80px;
-	height: 30px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	outline: 1px green;
-	border: none;
-	cursor: pointer;
-	color: white;
-	background-color: green;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	border-radius: 1px;
-}
