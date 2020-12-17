@@ -11,7 +11,6 @@ const NewComment = (props) => {
 
 	const initialSetup = () => {
 		setPostId(props.postId);
-		console.log("newcomment ", props, currentUser);
 	};
 
 	useEffect(initialSetup, [currentUser]);
@@ -44,9 +43,8 @@ const NewComment = (props) => {
 						};
 						props.success(post);
 
-						// clear data
 						setMessage("");
-						setLocation(undefined);
+						setError("");
 					}
 				})
 				.catch((error) => {

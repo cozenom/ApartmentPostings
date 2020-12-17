@@ -11,6 +11,7 @@ import ReactHtmlParser from "react-html-parser";
 import CommentsList from "../../components/comments-list";
 import NewComment from "../../components/comment-add";
 import { currentUser } from "../../service/user.service";
+// import likeButton from "../../components/like-button";
 
 const Post = (props) => {
 	const [id, setId] = useState();
@@ -19,8 +20,6 @@ const Post = (props) => {
 	const [pics, setPics] = useState(null);
 	const [like, setLike] = useState(false);
 	const [comments, setComments] = useState([]);
-
-	// console.log(props);
 
 	const initialLoad = () => {
 		if (props.location && props.location.state && props.location.state.postId) {
@@ -36,7 +35,6 @@ const Post = (props) => {
 	useEffect(initialLoad, [props.location, props.match]);
 
 	const fetchPost = () => {
-		// console.log("fetchposts: ", filter, sort, currentPage);
 		if (id && !post) {
 			getPost(id)
 				.then((response) => {
@@ -53,7 +51,6 @@ const Post = (props) => {
 	useEffect(fetchPost, [id, post]);
 
 	const loadComments = () => {
-		console.log("user", props.user);
 		if (id && currentUser._id) {
 			getComments(id, currentUser._id)
 				.then((response) => {
@@ -92,6 +89,11 @@ const Post = (props) => {
 		}
 	};
 	useEffect(getPics, [post]);
+
+	const handleClick = () => {
+		setLike(!like);
+		console.log("Setlike", like);
+	};
 
 	return (
 		<div className="post">

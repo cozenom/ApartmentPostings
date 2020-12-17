@@ -17,7 +17,6 @@ const addComment = async (req, res) => {
 					message: req.body.message,
 					created: Date.now(),
 				};
-				console.log("submitting comment, ", comment);
 				commentsController
 					.addComment(comment)
 					.then((result) => {

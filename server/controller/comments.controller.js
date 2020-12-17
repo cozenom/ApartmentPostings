@@ -11,7 +11,6 @@ const readComments = (postId, userId) => {
 					console.error("error reading comments", err);
 					reject(err);
 				} else {
-					// console.log("readcomments ", docs);
 					resolve(docs);
 				}
 			});
@@ -20,7 +19,6 @@ const readComments = (postId, userId) => {
 
 const addComment = (comment) => {
 	return new Promise((resolve, reject) => {
-		console.log("addcomment received, ", comment);
 		mongoClient
 			.getDatabase()
 			.connection.collection("comments")
@@ -41,25 +39,7 @@ const addComment = (comment) => {
 	});
 };
 
-// const deleteComments = (postId, userId) => {
-// 	return new Promise((resolve, reject) => {
-// 		mongoClient
-// 			.getDatabase()
-// 			.connection.collection("comments")
-// 			.deleteOne({ postId, userId })
-// 			.toArray((err, docs) => {
-// 				if (err) {
-// 					console.error("error reading comments", err);
-// 					reject(err);
-// 				} else {
-// 					resolve(docs);
-// 				}
-// 			});
-// 	});
-// };
-
 module.exports = {
 	readComments,
 	addComment,
-	// deleteComments,
 };
