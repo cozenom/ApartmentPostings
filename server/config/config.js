@@ -6,7 +6,6 @@ let env =
 		? process.env["ENV"] || "localhost"
 		: process.argv[process.argv.indexOf("-env") + 1];
 
-console.log(env);
 // read config file when developing
 let configJson = {};
 if (env === "localhost") {
