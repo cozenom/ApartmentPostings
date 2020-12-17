@@ -1,6 +1,6 @@
 import React from "react";
 import "./comment.css";
-import { convertDate } from "../../service/helper";
+import { convertDateToFromNow } from "../../service/helper";
 
 const Comments = (props) => {
 	console.log(props.comment);
@@ -8,7 +8,9 @@ const Comments = (props) => {
 		<span className="comment-item">
 			<div className="comment">{props.comment.message}</div>
 
-			<div className="date">Added: {convertDate(props.comment.created)}</div>
+			<div className="date">
+				Added: {convertDateToFromNow(props.comment.created)}
+			</div>
 		</span>
 	);
 };
