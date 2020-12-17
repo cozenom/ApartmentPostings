@@ -1,3 +1,6 @@
+<!---
+comment from Tiezhou: some part of the readme can be removed, and other things like screenshot can be added.
+-->
 # Proj4 -- Craigslist Post App
 Goal: 
 You will be building an application that let's me explore a list of Craigslist postings (I'll give you the file). The app should let me see the listings in an orderly manner, it should let users filter and sort by different criteria and registered users annotate the postings. You must implement full authentication with passport or similar, and add a creative element of your choice. 
