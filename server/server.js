@@ -8,10 +8,12 @@ const passport = require("passport");
 // Passport config
 const configurePassport = require("./config/authConfig");
 configurePassport();
+console.log("Passport configured");
 
 // routes
 const authRoute = require("./routes/auth.route");
 const postRoute = require("./routes/posts.route");
+const commentRoute = require("./routes/comments.route");
 
 // Express app
 const app = express();
@@ -56,6 +58,7 @@ app.get("/", (req, res) => {
 // user api requests
 app.use("/auth", authRoute);
 app.use("/posts", postRoute);
+app.use("/comments", commentRoute);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

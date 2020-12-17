@@ -7,8 +7,7 @@ const configurePassport = () => {
 	// configure passport.js to use the local strategy
 	passport.use(
 		new LocalStrategy((username, password, done) => {
-			// here is where you make a call to the database
-			// to find the user based on their username or email address
+			// call db to verify info
 			userController
 				.readUser({ username, password })
 				.then((result) => {

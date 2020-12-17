@@ -11,12 +11,23 @@ export const getPosts = (filter, sort, page) => {
 	);
 };
 
-// export const searchAllPosts = (searchTerm) => {
-// 	return axios.get(
-// 		env[process.env.NODE_ENV].api + "/posts/search?searchTerm=" + searchTerm
-// 	);
-// };
-
 export const getPost = (id) => {
 	return axios.get(env[process.env.NODE_ENV].api + "/posts/one?id=" + id);
+};
+
+export const addComment = (payload) => {
+	return axios.post(env[process.env.NODE_ENV].api + "/comments/add", payload, {
+		withCredentials: true,
+		timeout: 10000,
+	});
+};
+
+export const getComments = (postId, userId) => {
+	return axios.get(
+		env[process.env.NODE_ENV].api + `/comments/all?id=${postId}&user=${userId}`,
+		{
+			withCredentials: true,
+			timeout: 10000,
+		}
+	);
 };
