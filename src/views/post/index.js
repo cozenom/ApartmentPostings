@@ -141,7 +141,7 @@ const Post = (props) => {
 						</div>
 						<div>
 							<hr />
-							<h2>Comments: </h2>
+							<h2>Notes: </h2>
 							<div className="comments">
 								{currentUser._id ? (
 									<React.Fragment>
@@ -156,14 +156,14 @@ const Post = (props) => {
 									</React.Fragment>
 								) : (
 									<div id={props.id} className="login">
-										Please sign-in/sign-up to comment.
+										Please sign-in/sign-up to make notes. <br />
 										<Link
 											to={{
 												pathname: "/login",
 												state: { from: props.location },
 											}}
 										>
-											<br /> Go to sign-in/sign-up
+											<br /> To sign-in/up
 										</Link>
 									</div>
 								)}

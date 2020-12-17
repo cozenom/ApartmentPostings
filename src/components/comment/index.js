@@ -1,14 +1,15 @@
 import React from "react";
-import "./comments.css";
+import "./comment.css";
 import { convertDate } from "../../service/helper";
 
 const Comments = (props) => {
 	console.log(props.comment);
 	return (
-		<div className="comment-item">
-			<div className="date">{convertDate(props.comment.created)}</div>
+		<span className="comment-item">
 			<div className="comment">{props.comment.message}</div>
-		</div>
+
+			<div className="date">Added: {convertDate(props.comment.created)}</div>
+		</span>
 	);
 };
 
