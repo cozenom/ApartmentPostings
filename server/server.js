@@ -60,11 +60,8 @@ app.use("/auth", authRoute);
 app.use("/posts", postRoute);
 app.use("/comments", commentRoute);
 
-// send back a 404 error for any unknown api request
-app.use((req, res, next) => {
-	res.status(httpStatus.NOT_FOUND);
-	res.send("Not found");
-});
+// Static files
+app.use(express.static(__dirname + "/build"));
 
 // Export Express router
 module.exports = app;
