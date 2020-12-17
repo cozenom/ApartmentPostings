@@ -1,56 +1,56 @@
 .feed {
-	position: relative;
+  position: relative;
 }
 
 .feed .loader {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .feed .container {
-	width: 100%;
+  width: 100%;
 }
 
 /* Pagination */
 .feed .pagination {
-	display: flex;
-	list-style: none;
-	padding: 0;
-	margin: 13px;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 13px;
+  align-items: center;
+  justify-content: center;
 }
 
 .feed .previous {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 .feed .pagination li a {
-	margin-right: 13px;
-	height: 30px;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	color: #551a8b;
-	line-height: 30px;
-	user-select: none;
-	padding: 3px 13px;
+  margin-right: 13px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #551a8b;
+  line-height: 30px;
+  user-select: none;
+  padding: 3px 13px;
 }
 
 .feed .pagination .pagination__link--active a {
-	background-color: #551a8b;
-	color: white;
+  background-color: #551a8b;
+  color: white;
 }
 .feed .pagination .pagination__link--disabled a {
-	color: #b1b1b1;
+  color: #b1b1b1;
 }
 
 .feed .top {
-	position: relative;
-	width: 100%;
-	display: flex;
-	margin-top: 63px;
-	margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin-top: 63px;
+  margin-bottom: 30px;
 }

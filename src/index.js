@@ -18,21 +18,21 @@ import Footer from "./components/footer";
 getUser();
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Router>
-			<Header />
-			<div role="main" id="craigslist-body" className="craigslist-body">
-				<Switch>
-					<Route exact path="/" component={Feed} />
-					<Route path="/post/:postId" component={Post} />
-					<Route path="/login" component={Authenticate} />
-					<Route path="*" component={NotFound} />
-				</Switch>
-			</div>
-			<Footer />
-		</Router>
-	</React.StrictMode>,
-	document.getElementById("root")
+  <React.StrictMode>
+    <Router>
+      <Header />
+      <div role="main" id="craigslist-body" className="craigslist-body">
+        <Switch>
+          <Route exact path="/" component={Feed} />
+          <Route path="/post/:postId" component={Post} />
+          <Route path="/login" component={Authenticate} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </div>
+      <Footer />
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

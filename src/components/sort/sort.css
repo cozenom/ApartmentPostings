@@ -1,27 +1,27 @@
 .sort {
-	height: 20px;
-	width: 20%;
-	display: flex;
-	margin-right: 30px;
-	margin-left: auto;
+  height: 20px;
+  width: 20%;
+  display: flex;
+  margin-right: 30px;
+  margin-left: auto;
 }
 .sort .sort-by {
-	color: black;
-	font-size: 14px;
-	line-height: 18px;
+  color: black;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .sort .sort-by span {
-	color: black;
-	margin-left: 5px;
-	margin-right: 5px;
-	user-select: none;
+  color: black;
+  margin-left: 5px;
+  margin-right: 5px;
+  user-select: none;
 }
 .sort .sort-by select {
-	border: none;
-	cursor: pointer;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	font-size: 14px;
+  border: none;
+  cursor: pointer;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
 }

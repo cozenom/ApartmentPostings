@@ -1,35 +1,35 @@
 .new-comment {
-	width: calc(100%);
-	position: relative;
-	background-color: white;
-	border-color: black 1px;
-	display: flex;
-	flex-direction: column;
+  width: calc(100%);
+  position: relative;
+  background-color: white;
+  border-color: black 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 .new-comment textarea {
-	height: 150px;
-	font-family: "Open Sans", sans-serif;
-	padding: 13px;
+  height: 150px;
+  font-family: "Open Sans", sans-serif;
+  padding: 13px;
 }
 
 .new-comment button {
-	width: 80px;
-	height: 30px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	outline: 1px #551a8b;
-	border: none;
-	cursor: pointer;
-	color: white;
-	background-color: #551a8b;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	border-radius: 1px;
+  width: 80px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  outline: 1px #551a8b;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #551a8b;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 1px;
 }
 
 .error {
-	margin: 0;
-	color: #e64b40;
+  margin: 0;
+  color: #e64b40;
 }

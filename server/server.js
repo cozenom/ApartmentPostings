@@ -22,16 +22,16 @@ const app = express();
 // app.use(cors());
 var whitelist = ["http://localhost:8080", "localhost:3000"];
 app.use(
-	cors({
-		origin: function (origin, callback) {
-			if (whitelist.indexOf(origin) !== -1) {
-				callback(null, true);
-			} else {
-				callback();
-			}
-		},
-		credentials: true,
-	})
+  cors({
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback();
+      }
+    },
+    credentials: true,
+  })
 );
 
 // parse json request body
@@ -52,7 +52,7 @@ app.use(passport.session());
 
 // Default route
 app.get("/", (req, res) => {
-	res.send("Hello from api");
+  res.send("Hello from api");
 });
 
 // user api requests

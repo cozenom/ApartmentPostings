@@ -1,55 +1,55 @@
 .post-container {
-	display: flex;
-	flex-direction: row;
-	width: calc(100%-50px);
-	text-decoration: none;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	background-color: white;
-	margin: 13px;
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: calc(100%-50px);
+  text-decoration: none;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  margin: 13px;
+  display: flex;
+  justify-content: space-between;
 }
 .post-container .content {
-	display: flex;
-	flex-direction: column;
-	padding-left: 25px;
-	justify-content: left;
-	width: calc(100% - 200px);
+  display: flex;
+  flex-direction: column;
+  padding-left: 25px;
+  justify-content: left;
+  width: calc(100% - 200px);
 }
 
 .post-container .title {
-	width: calc(100% - 20px);
-	color: black;
-	font-size: 20px;
-	height: 30px;
-	line-height: 40px;
-	text-overflow: ellipsis;
+  width: calc(100% - 20px);
+  color: black;
+  font-size: 20px;
+  height: 30px;
+  line-height: 40px;
+  text-overflow: ellipsis;
 }
 
 .post-container .content .left {
-	width: 50%;
-	padding: 5px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: left;
-	font-family: "Open Sans", sans-serif;
-	font-size: 16px;
-	color: black;
+  width: 50%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: black;
 }
 
 .post-container .content {
-	padding: 20px;
-	display: flex;
+  padding: 20px;
+  display: flex;
 }
 
 .post-container .image {
-	align-items: right;
-	width: 200px;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-position: bottom center;
-	background-size: cover;
+  align-items: right;
+  width: 200px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
 }

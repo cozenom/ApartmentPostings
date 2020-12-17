@@ -1,55 +1,55 @@
 .filter {
-	height: 20px;
-	width: 80%;
-	display: flex;
-	margin-left: 5px;
-	margin-right: 0;
+  height: 20px;
+  width: 80%;
+  display: flex;
+  margin-left: 5px;
+  margin-right: 0;
 }
 
 .filter .filter-container {
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .filter span {
-	padding-left: 5px;
-	padding-right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .filter input {
-	width: 10%;
-	position: relative;
-	text-align: right;
-	color: black;
-	background-color: #eeeeee;
-	border: 1px #eeeeee;
+  width: 10%;
+  position: relative;
+  text-align: right;
+  color: black;
+  background-color: #eeeeee;
+  border: 1px #eeeeee;
 
-	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .filter .price,
 .filter .bedrooms,
 .filter .area {
-	color: black;
-	font-size: 14px;
-	line-height: 18px;
+  color: black;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
 input[type="number"] {
-	-moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 input[type="number"]:focus {
-	background-color: #541a8b5e;
-	border: 1px solid #541a8b5e;
+  background-color: #541a8b5e;
+  border: 1px solid #541a8b5e;
 }

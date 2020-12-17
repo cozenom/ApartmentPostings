@@ -1,82 +1,82 @@
 header {
-	position: fixed;
-	top: 0;
-	z-index: 99;
-	height: 50px;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-	z-index: 10000;
-	transition: all 0.2s ease-in-out;
-	background-color: transparent;
+  z-index: 10000;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
 }
 
 header.active {
-	background: #551a8b;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  background: #551a8b;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
 
 header > * {
-	line-height: 52px;
+  line-height: 52px;
 }
 
 header .logo {
-	width: 52px;
-	height: 52px;
-	background-size: cover;
+  width: 52px;
+  height: 52px;
+  background-size: cover;
 }
 
 header.active .menu a {
-	color: white;
+  color: white;
 }
 
 header a {
-	padding: 12px 20px;
-	font-size: 16px;
-	font-weight: 600;
-	color: white;
-	text-decoration: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
 }
 
 header.active .menu a:hover {
-	border-bottom: solid 4px white;
+  border-bottom: solid 4px white;
 }
 
 header .filler,
 header .login {
-	text-align: left;
-	height: 100%;
+  text-align: left;
+  height: 100%;
 }
 
 header .login > div {
-	display: flex;
+  display: flex;
 }
 
 header .login .user {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: 250px;
-	text-align: right;
-	color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+  text-align: right;
+  color: white;
 }
 
 header .login button {
-	width: 80px;
-	height: 30px;
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 11px;
-	outline: 1px white;
-	border: none;
-	cursor: pointer;
-	color: #551a8b;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-	border-radius: 1px;
+  width: 80px;
+  height: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 11px;
+  outline: 1px white;
+  border: none;
+  cursor: pointer;
+  color: #551a8b;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 1px;
 }

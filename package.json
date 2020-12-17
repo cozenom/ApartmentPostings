@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"license": "MIT",
 	"author": "cozenom",
-	"private": true,
+	"private": false,
 	"dependencies": {
 		"axios": "^0.21.0",
 		"compression": "^1.7.4",
@@ -29,7 +29,6 @@
 		"start": "node server/app.js",
 		"start:frontend": "PORT=8080 react-scripts start",
 		"build": "react-scripts build && mv build server/build",
-		"build:frontend": "react-scripts build",
 		"start:backend": "nodemon server/app.js --ignore 'src/**/*'",
 		"start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
 		"lint": "eslint src/**/*.js server/**/*.js --fix",

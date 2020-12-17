@@ -9,84 +9,84 @@ import Filter from "../../components/filter";
 import Sort from "../../components/sort";
 
 const Feed = (props) => {
-	const [posts, setPosts] = useState([]);
-	const [nrofPosts, setnrofPosts] = useState(0);
-	const [dataAvailable, setDataAvailable] = useState(false);
-	const [currentPage, setCurrentPage] = useState(0);
-	const [filter, setFilter] = useState({});
-	const [sort, setSort] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [nrofPosts, setnrofPosts] = useState(0);
+  const [dataAvailable, setDataAvailable] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [filter, setFilter] = useState({});
+  const [sort, setSort] = useState({});
 
-	const PER_PAGE = 10;
+  const PER_PAGE = 10;
 
-	function handlePageClick({ selected: selectedPage }) {
-		setCurrentPage(selectedPage);
-	}
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
+  }
 
-	const initialLoad = () => {
-		setDataAvailable(false);
-		fetchPosts;
-		setDataAvailable(true);
-	};
+  const initialLoad = () => {
+    setDataAvailable(false);
+    fetchPosts;
+    setDataAvailable(true);
+  };
 
-	const fetchPosts = () => {
-		// console.log("fetchposts: ", filter, sort, currentPage);
-		getPosts(filter, sort, currentPage)
-			.then((response) => {
-				// Insert users
-				setPosts(response.data.Data);
-				setnrofPosts(response.data.Count);
+  const fetchPosts = () => {
+    // console.log("fetchposts: ", filter, sort, currentPage);
+    getPosts(filter, sort, currentPage)
+      .then((response) => {
+        // Insert users
+        setPosts(response.data.Data);
+        setnrofPosts(response.data.Count);
 
-				// Let UI know that the users are available
-			})
-			.catch((err) => {
-				// Show error message
-				console.error("Failed to get all posts", err);
-			});
-	};
+        // Let UI know that the users are available
+      })
+      .catch((err) => {
+        // Show error message
+        console.error("Failed to get all posts", err);
+      });
+  };
 
-	useEffect(fetchPosts, [filter, sort, currentPage]);
-	useEffect(initialLoad, [fetchPosts]);
-	useEffect(() => {
-		setCurrentPage(0);
-	}, [filter, sort]);
+  useEffect(fetchPosts, [filter, sort, currentPage]);
+  useEffect(initialLoad, [fetchPosts]);
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [filter, sort]);
 
-	return (
-		<div className="feed">
-			<div className="top">
-				<Filter updateFilter={setFilter} />
-				<Sort updateSort={setSort} />
-			</div>
-			<div className="container">
-				{
-					// Show loader until we load the user list
-					dataAvailable ? (
-						<React.Fragment>
-							<ReactPaginate
-								previousLabel={"← Previous"}
-								nextLabel={"Next →"}
-								pageCount={Math.ceil(nrofPosts / PER_PAGE)}
-								onPageChange={handlePageClick}
-								containerClassName={"pagination"}
-								previousLinkClassName={"pagination__link"}
-								nextLinkClassName={"pagination__link"}
-								disabledClassName={"pagination__link--disabled"}
-								activeClassName={"pagination__link--active"}
-							/>
-							<PostList posts={posts} />
-						</React.Fragment>
-					) : (
-						<Loader
-							type="TailSpin"
-							color="#551A8B"
-							height={100}
-							width={100}
-							className="loader"
-						/>
-					)
-				}
-			</div>
-		</div>
-	);
+  return (
+    <div className="feed">
+      <div className="top">
+        <Filter updateFilter={setFilter} />
+        <Sort updateSort={setSort} />
+      </div>
+      <div className="container">
+        {
+          // Show loader until we load the user list
+          dataAvailable ? (
+            <React.Fragment>
+              <ReactPaginate
+                previousLabel={"← Previous"}
+                nextLabel={"Next →"}
+                pageCount={Math.ceil(nrofPosts / PER_PAGE)}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
+              />
+              <PostList posts={posts} />
+            </React.Fragment>
+          ) : (
+            <Loader
+              type="TailSpin"
+              color="#551A8B"
+              height={100}
+              width={100}
+              className="loader"
+            />
+          )
+        }
+      </div>
+    </div>
+  );
 };
 
 export default Feed;
