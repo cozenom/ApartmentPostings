@@ -1,5 +1,6 @@
 .comment-item {
 	display: flex;
+	padding-top: 5px;
 }
 
 .comment-item .date {

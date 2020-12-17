@@ -7,7 +7,6 @@ const Comments = (props) => {
 	return (
 		<span className="comment-item">
 			<div className="comment">{props.comment.message}</div>
-
 			<div className="date">
 				Added: {convertDateToFromNow(props.comment.created)}
 			</div>
