@@ -1,3 +1,6 @@
+<!---
+comment from Tiezhou: some part of the readme can be removed, and other things like screenshot can be added.
+-->
 # Proj4 -- Craigslist Post App
 
 ## Goal:
